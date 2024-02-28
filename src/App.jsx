@@ -16,17 +16,18 @@ function App() {
     setState(true);
   };
   return (
-    <div>
+    <div className='form-container' >
 
       <form onSubmit={handleSubmit(SubmitHandler)}>
-        <div>{state ? 'Registration Successfull' : ''}</div>
+
+        {state ? (<div className='registration-success' >Registration Successful !</div>) : ""}
 
         <label htmlFor="">Username</label>
         <input
           type="text"
           placeholder="First Name.."
           {...register('firstName', {
-            required: 'Please dont keep input feild empty',
+            required: 'Please dont keep input field empty !',
           })}
         />
 
@@ -39,7 +40,7 @@ function App() {
           type="text"
           placeholder="Last Name.."
           {...register('lastName', {
-            required: 'Please dont keep input feild empty',
+            required: 'Please dont keep input field empty !',
           })}
         />
 
@@ -50,12 +51,12 @@ function App() {
           type="email"
           placeholder="Email.."
           {...register('email', {
-            required: "Please don't keep input field empty",
+            required: "Please don't keep input field empty !",
             validate: (value) => {
               if (value.includes('@')) {
                 return true; // Valid email
               }
-              return 'invalid email';
+              return 'Invalid email !';
             },
           })}
 
@@ -68,7 +69,7 @@ function App() {
           type="password"
           placeholder="Password.."
           {...register('password', {
-            required: "Please don't keep input field empty",
+            required: "Please don't keep input field empty !",
             minLength: {
               value: 5,
               message: 'Password must be more than 4 characters',
@@ -82,7 +83,7 @@ function App() {
 
         {errors.password ? (<p>{errors.password.message}</p>) : ""}
 
-        <input type="submit" value={'Register'} />
+        <input className='register-btn' type="submit" value={'Register'} />
       </form >
       <DevTool control={control} />
     </div >
